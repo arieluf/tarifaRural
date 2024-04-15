@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interpolación de puntos</title>
+</head>
+<body>
+  <h2>Interpolación de puntos</h2>
+  <p>Ingresa m3 consumidos:</p>
+ <!-- <script defer="" src="listas.js"></script> -->
+  <input id="inputNumber" type="number" />
+  <button onclick="interpolar()">Interpolar</button>
+  <p id="resultado"></p>
+  <p>Selecciona la lista:</p>
+  <select id="listaSelect">
+<option value="lista001">Las Maitas</option>
+    <option value="lista002">San Miguel</option>
+    <option value="lista003">Cerro Sombrero</option>
+    <option value="lista004">Cuya</option>
+    <option value="lista005">Sobraya</option>
+    <option value="lista006">Lluta</option>
+<option value="lista007">Acha</option>
+<option value="lista008">Cerro Moreno</option>
+<option value="lista009">Putre socio</option>
+<option value="lista010">Putre restaurant</option>
+<option value="lista011">Putre Hotel</option>
+<option value="lista012">Codpa</option>
+<option value="lista013">Guañacagua</option>
+<option value="lista014">Pago de Gomez1</option>
+<option value="lista015">Pago de Gomez2</option>
+<option value="lista016">Pago de Gomez3</option>
+<option value="lista017">Pampa Algodonal1</option>
+<option value="lista018">Pampa Algodonal  18 sept</option>
+<option value="lista019">Villa Ponderosa</option>
+<option value="lista020">Visviri</option>
+<option value="lista021">Illapata</option>
+<option value="lista022">Socoroma</option>
+<option value="lista023">Belén</option>
+<option value="lista024">Ticnamar</option>
+<option value="lista025">Chaca</option>
+<option value="lista091">Chapiquiña</option>
+<option value="lista092">Molinos, Chapisca y Sora</option>
+<option value="lista121">Esquiña</option>
+<option value="lista122">Cobija</option>
+<option value="lista131">Chujlluta</option>
+<option value="lista181">Timar</option>
+
+    <!-- Agrega más opciones para cada lista que necesites -->
+  </select>
+<script>
+    var lista001 = [[0, 3000], [20, 29000], [3000, 29829000], [3000, 29829000], [3000, 29829000]];
+    var lista002 = [[0, 3000], [15, 7500], [20, 9500], [40, 19500], [60, 35500]];
+    var lista003 = [[0, 2500], [40, 18500], [60, 42500], [100, 162500], [3000, 14662500]];
+    var lista004 = [[0, 13000], [20, 53000], [3000, 8993000], [3000, 8993000], [3000, 8993000]];
+    var lista005 = [[0, 4000], [10, 8000], [20, 13000], [30, 19000], [3000, 2989000]];
+ 	var lista006=[[0,3000],[15,10500],[40,30500],[3000,3878500],[3000,3878500]];
+   	var lista007=[[0,6000],[20,63000],[3000,10493000],[3000,10493000],[3000,10493000]];
+ 	var lista008=[[0,5998],[20,19598],[3000,2999598],[3000,2999598],[3000,2999598]];
+ 	var lista009=[[0,1300],[3000,1300],[3000,1300],[3000,1300],[3000,1300]];
+ 	var lista091=[[0,14000],[3000,14000],[3000,14000],[3000,14000],[3000,14000]];
+ 	var lista092=[[0,20000],[3000,20000],[3000,20000],[3000,20000],[3000,20000]];
+ 	var lista010=[[0,1650],[15,9150],[3000,2098650],[3000,2098650],[3000,2098650]];
+ 	var lista011=[[0,2000],[10,6000],[3000,2996000],[3000,2996000],[3000,2996000]];
+     var lista012=[[0,10000],[40,50000],[70,140000],[3000,17720000],[3000,17720000]];
+     var lista121=[[0,8300],[40,48300],[70,138300],[3000,17718300],[3000,17718300]];
+     var lista122=[[0,1700],[40,41700],[70,131700],[3000,17711700],[3000,17711700]];
+     var lista013=[[0,5500],[5,8500],[10,12500],[20,23500],[3000,5387500]];
+     var lista131=[[0,7000],[5,10750],[10,15750],[20,29250],[3000,6734250]];
+     var lista014=[[0,8000],[40,108000],[3000,10468000],[3000,10468000],[3000,10468000]];
+     var lista015=[[0,1500],[7,8500],[15,20500],[3000,5990500],[3000,5990500]];
+     var lista016=[[0,600],[3000,4800600],[3000,4800600],[3000,4800600],[3000,4800600]];
+     var lista017=[[0,500],[3000,500],[3000,500],[3000,500],[3000,500]];
+     var lista018=[[0,500],[3000,500],[3000,500],[3000,500],[3000,500]];
+     var lista181=[[0,2000],[3000,2000],[3000,2000],[3000,2000],[3000,2000]];
+     var lista019=[[0,3000],[3000,12003000],[3000,12003000],[3000,12003000],[3000,12003000]];
+     var lista020=[[0,0],[3000,0],[3000,0],[3000,0],[3000,0]];
+     var lista021=[[0,0],[3000,0],[3000,0],[3000,0],[3000,0]];
+     var lista022=[[0,0],[3000,0],[3000,0],[3000,0],[3000,0]];
+     var lista023=[[0,0],[3000,0],[3000,0],[3000,0],[3000,0]];
+     var lista024=[[0,0],[3000,0],[3000,0],[3000,0],[3000,0]];
+     var lista025=[[0,0],[3000,0],[3000,0],[3000,0],[3000,0]];
+ 	
+   function interpolar() {
+      var x = parseFloat(document.getElementById("inputNumber").value);
+      var listaName = document.getElementById("listaSelect").value;
+      var resultado = interpolarPuntos(x, listaName);
+      document.getElementById("resultado").innerHTML = "El valor interpolado es: " + resultado;
+    }
+
+
+    function interpolarPuntos(x, listaName) {
+      if (x < 0 || x > 3000) {
+        return "El número debe estar entre 0 y 3000";
+      } else {
+        var puntos;
+        switch (listaName) {
+      case "lista001": puntos = lista001; break;
+      case "lista002": puntos = lista002; break;
+      case "lista003": puntos = lista003; break;
+      case "lista004": puntos = lista004; break;
+      case "lista005": puntos = lista005; break;
+      case "lista006": puntos = lista006; break;
+      case "lista007": puntos = lista007; break;
+      case "lista008": puntos = lista008; break;
+      case "lista009": puntos = lista009; break;
+      case "lista010": puntos = lista010; break;
+      case "lista011": puntos = lista011; break;
+      case "lista012": puntos = lista012; break;
+      case "lista013": puntos = lista013; break;
+      case "lista014": puntos = lista014; break;
+      case "lista015": puntos = lista015; break;
+      case "lista016": puntos = lista016; break;
+      case "lista017": puntos = lista017; break;
+      case "lista018": puntos = lista018; break;
+      case "lista019": puntos = lista019; break;
+      case "lista020": puntos = lista020; break;
+      case "lista021": puntos = lista021; break;
+      case "lista022": puntos = lista022; break;
+      case "lista023": puntos = lista023; break;
+      case "lista024": puntos = lista024; break;
+      case "lista025": puntos = lista025; break;
+      case "lista091": puntos = lista091; break;
+      case "lista092": puntos = lista092; break;
+      case "lista121": puntos = lista121; break;
+      case "lista122": puntos = lista122; break;
+      case "lista131": puntos = lista131; break;
+      case "lista181": puntos = lista181; break;
+
+
+      // Agrega más casos para cada lista que necesites
+      default:
+        return "Lista no encontrada";
+    }
+    for (var i = 0; i < puntos.length - 1; i++) {
+      if (x >= puntos[i][0] && x <= puntos[i + 1][0]) {
+        var y = ((x - puntos[i][0]) / (puntos[i + 1][0] - puntos[i][0])) * (puntos[i + 1][1] - puntos[i][1]) + puntos[i][1];
+        return y;
+      }
+    }
+  }
+}
+ 
+
+ </script> 
+</body>
+</html>
